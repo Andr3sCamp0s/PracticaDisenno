@@ -1,12 +1,19 @@
+import re
 from dataclasses import dataclass
+from datetime import datetime
+from decimal import Decimal
 
 @dataclass(frozen=True)
-class Cedula: 
+class Cedula:
     valor: str
+
+    def __post_init__(self):
+        p = c.split("-") #Use la misma funcion que tenia en reglas
+        return len(p) == 3 and len(p[0]) == 1 and len(p[1]) == 4 and len(p[2]) == 4 and all(x.isdigit() for x in p)
 
 @dataclass(frozen=True)
 class Receta:
-    cedula: str
+    cedula: Cedula
     dias: int
     dosis_mg: float
     riesgo_alto: bool
@@ -14,6 +21,5 @@ class Receta:
 @dataclass(frozen=True)
 class Despacho:
     folio: str
-    vence_iso: str
-    recargo: float
     cadena: str
+    vence: datetime

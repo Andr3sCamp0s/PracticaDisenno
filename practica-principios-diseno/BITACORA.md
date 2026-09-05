@@ -85,15 +85,23 @@ Nada mas tuve que crear la funcion de emitir dentro de servicio, solo la hice qu
 ## Etapa 3 — Abstracción y reuso
 
 **Predicción:**
-
+Me salieron 2 coincidencias, creo que vamos a poder bajarlo hasta 0 porque de eso se trata el ejercicio, vamos a ver como nos va
 **Observación:**
 
 ```
+
+
+.......                                                                                       [100%]
+7 passed in 0.04s
+
 ```
 
 **Explicación:**
+Quitamos los JSON externos y las librerias para usar los puertos, los cuales no tienen el riesgo de infectar el codigo. Hicimos que la cedula se valide a si misma con un metodo interno ademas de ahora EmisionDeRecetas ahora devuelve un objeto de tipo despacho, modificando la version vieja que hice que solo devolvia un diccionario, asi los evitamos.
 
-**Sello:**
+Despues de correr el sello me di cuenta que habia roto la etapa 1 por poner un datetime.now(), pero luego lo corregi y ahora ya estan bien las 2, se me habia olvidado ese detalle, ahora la fecha debe de venir por el puerto que acabamos de crear
+
+**Sello: 6abac9074fcdd7ee**
 
 ## Etapa 4 — Flexibilidad, obsolescencia y portabilidad
 
