@@ -35,28 +35,52 @@ Las 4 pruebas pasaron lo que quiere decir que mi tabla esta completa y redactada
 ## Etapa 1 — Dividir y conquistar, cohesión
 
 **Predicción:**
+La clase ServicioRecetas actualmente tiene 6 responsabilidades:
+Valida el formato de las cedulas
+Calculos financieros de las recetas
+Manejo de bitacora dentro de la base de datos
+Counicacion con la red HTTP
+Control de la cache mutable
+Exportacion de texto a los archivos del sistema 
+
+Pienso que voy a necesitar unos 7 archivos, uno por cada funcionalidad y otro que llame a los metodos de los otros archivos
 
 **Observación:**
 
 ```
+.......                                                                                                        [100%]
+7 passed in 0.06s
+
 ```
 
 **Explicación:**
+Cree las 3 carpetas, al principio fallo la prueba porque se me habia olvidado crear infraestructura y aplicacion, pero lo corregi rapidamente, dentro dominio cree los errores, las clases y un par de funciones rapidas que validan una cedula y otra que calcula recargo.
 
-**Sello:**
+**Sello:3aa416a64f45ffda**
 
 ## Etapa 2 — Reducir el acoplamiento
 
 **Predicción:**
+Al alterar vigencia_dias en CONFIG cambiándolo a 1, predigo que se afectará directamente el cálculo de las fechas de vencimiento de las recetas emitidas. Ya que la informacion entre las funciones va a ser erronea rompiendo la logica del codigo.
+Yo digo que el archivo va a cambiar en 2 lugares, en la expiracion de la receta y calcular la tarifa.
+
+5min despues*
+
+Luego de contarlos me di cuanta que no aprecie un elemento, el calculo de la tarifa duplicada por riesgo, por lo que en realidad cambio en 3 lugares
 
 **Observación:**
 
 ```
+
+.....                                                                                         [100%]
+5 passed in 0.03s
+
 ```
 
 **Explicación:**
+Nada mas tuve que crear la funcion de emitir dentro de servicio, solo la hice que retornara un diccionario ya que no me pidieron que le pusiera logica al cuerpo de la funcion asi que quedo como solo un return. Por otro lado me toco modificar dentro de reglas la funcion de calcular tarifa para que los parametros no fuera variables globales que pudieran ser cambiadas
 
-**Sello:**
+**Sello: ac1da5c02588b26a**
 
 ## Etapa 3 — Abstracción y reuso
 
