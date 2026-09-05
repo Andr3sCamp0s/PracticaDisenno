@@ -17,15 +17,20 @@ Carné:
 ## Etapa 0 — Diagnóstico
 
 **Predicción:**
+Pienso que se van a incumplir los 11 principios por la naturaleza de la practica, por lo que hare un buen analisis para tratar de encontrar al menos una violacion a cada uno de los 11
 
 **Observación:**
 
 ```
+....                                                                                                           [100%]
+4 passed in 0.04s
+
 ```
 
 **Explicación:**
+Las 4 pruebas pasaron lo que quiere decir que mi tabla esta completa y redactada de buena manera
 
-**Sello:**
+**Sello: 9782c5acba7eec48**
 
 ## Etapa 1 — Dividir y conquistar, cohesión
 
