@@ -182,5 +182,8 @@ Nombre dos principios que se estorbaron entre sí en SU rediseño, y con qué
 criterio resolvió el conflicto. Cite el archivo donde se ve la decisión.
 
 **Conflicto 1:**
+El Principio 4 (Nivel de abstracción) y el Principio 6 (Reusar lo que existe) chocaron en `borde.py:7`. Pydantic nos pide reglas fijas para la web, y eso iba a ensuciar nuestro código limpio del hospital. Lo resolví usando el criterio de separar las zonas: Pydantic frena la basura en la entrada de la aplicación en `borde.py:7` y luego convertimos todo a objetos limpios del dominio mediante la función en `borde.py:15`.
 
 **Conflicto 2:**
+El Principio 7 (Flexibilidad) y el Principio 11 (Diseño defensivo) chocaron en `servicio.py:13`. Al hacer el sistema flexible con un mapa dinámico para meter cualquier farmacia sin tocar el código, nos arriesgábamos a que alguien pidiera una farmacia que no existe y el programa fallara en silencio devolviendo un nulo. Lo resolví con el criterio de fallar rápido: el servicio busca la clave en el mapa en `servicio.py:13` y si no está, tira de una vez el error `CadenaNoSoportada` en `servicio.py:14`.
+
