@@ -16,7 +16,7 @@ class Receta:
     cedula: Cedula
     medicamento: str  #Agregamos este campo que pide el test de la etapa 4
     dias: int
-    dosis_mg: float
+    dosis_mg: Decimal
     riesgo_alto: bool = False  #Por defecto
 
 @dataclass(frozen=True)

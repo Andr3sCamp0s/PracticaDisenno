@@ -1,6 +1,6 @@
 from datetime import timedelta
 from clinicasegura.dominio.modelos import Receta, Despacho
-from clinicasegura.dominio.errores import CadenaNoSoportada
+from clinicasegura.dominio.errores import CadenaNoSoportada, FarmaciaNoDisponible
 
 class EmisionDeRecetas:
     def __init__(self, pasarelas: dict, reloj, folios, bitacora):
@@ -21,8 +21,11 @@ class EmisionDeRecetas:
         ahora = self.reloj.ahora()
         vence = ahora + timedelta(days=30)
         
-        # Agregamos en bitacora
-        self.bitacora.registrar("emitida", folio)
-        
-        # Mandamos la receta por la pasarela
-        return pasarela.enviar(receta, folio, vence)
+        try:
+                resultado = pasarela.enviar(receta, folio, vence)
+                self.bitacora.registrar("emitida", folio)
+                return resultado
+        except TimeoutError:
+            # Si falla, dejamos rastro en la bitácora y mandamos el error
+            self.bitacora.registrar("fallida", folio)
+            raise FarmaciaNoDisponible(f"La farmacia {cadena} no respondió para el folio {folio}")

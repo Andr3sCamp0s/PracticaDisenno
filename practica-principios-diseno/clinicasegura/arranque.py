@@ -1,4 +1,5 @@
 import os
+import uuid
 from clinicasegura.dominio.servicio import EmisionDeRecetas
 
 def construir_servicio() -> EmisionDeRecetas:
